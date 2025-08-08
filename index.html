@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transcribe Notes — Clean UI</title>
+  <link rel="icon" href="language-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <img src="language-icon.png" width="28" height="28" alt="logo">
+        <h1>Transcribe Notes</h1>
+      </div>
+      <nav class="nav">
+        <span class="badge mono">Client‑side • API key in session</span>
+      </nav>
+    </header>
+
+    <div class="grid">
+      <!-- Left: Live transcription -->
+      <section class="card">
+        <div class="card-h">
+          <h2>Live Transcription</h2>
+          <div class="row">
+            <button id="startButton" class="primary">Start</button>
+            <button id="pauseResumeButton" class="">Pause</button>
+            <button id="stopButton" class="">Stop</button>
+          </div>
+        </div>
+        <div class="card-b">
+          <div class="kv">
+            <label for="apiKeyInput">OpenAI API key</label>
+            <input id="apiKeyInput" type="text" placeholder="sk-...">
+            <label>Status</label>
+            <div id="statusMessage" class="status">Idle</div>
+            <label>Recording</label>
+            <div id="recordTimer" class="timer mono">Recording Timer: 0 sec</div>
+            <label>Transcribe</label>
+            <div id="transcribeTimer" class="timer mono">0s</div>
+          </div>
+          <hr>
+          <div>
+            <h3 style="margin:8px 0 6px 0;font-size:14px">Transcript</h3>
+            <pre id="transcription" class="card code" style="padding:12px; min-height:140px;"></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Note generation -->
+      <section class="card">
+        <div class="card-h">
+          <h2>Note Generation</h2>
+          <div class="row">
+            <button id="generateNoteButton" class="primary">Generate note</button>
+          </div>
+        </div>
+        <div class="card-b">
+          <div class="kv">
+            <label for="promptSlot">Prompt slot</label>
+            <select id="promptSlot">
+              <option value="1">Slot 1</option>
+              <option value="2">Slot 2</option>
+              <option value="3">Slot 3</option>
+              <option value="4">Slot 4</option>
+              <option value="5">Slot 5</option>
+              <option value="6">Slot 6</option>
+              <option value="7">Slot 7</option>
+              <option value="8">Slot 8</option>
+              <option value="9">Slot 9</option>
+              <option value="10">Slot 10</option>
+            </select>
+            <label for="customPrompt">Custom prompt</label>
+            <textarea id="customPrompt" placeholder="Write your prompt for this slot..."></textarea>
+            <label>Note timer</label>
+            <div id="noteTimer" class="timer mono"></div>
+          </div>
+          <hr>
+          <div>
+            <h3 style="margin:8px 0 6px 0;font-size:14px">Generated note</h3>
+            <pre id="generatedNote" class="card code" style="padding:12px; min-height:140px;"></pre>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <p class="footer small">
+      Uses your API key locally in the browser; no server. VAD + chunking via existing logic. UI is new; logic preserved.
+    </p>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
